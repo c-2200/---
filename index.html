@@ -19,7 +19,13 @@
         const max = 4;
         const min = 1;
         if (1 <= value && value <= 4) {
-          
+          nextStep();
+        } else {
+          document.getElementById("result").textContent("ERROR　範囲内の数字を入力してください");
+          input.value = "";
+          input.focus();
+        }
+      }
     </script>
   </body>
 </html>
