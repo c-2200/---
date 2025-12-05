@@ -35,5 +35,38 @@
       .red { background: red; }
       .black { background: black; }
     </style>
+    <div class="table" id="rouletteTable"></div>
+    <script>
+      const redNumbers = [
+        1,3,5,7,9,12,14,16,18,
+        19,21,23,25,27,30,32,34,36
+      ];
+      const table = document.getElementById("rouletteTable");
+      const zero = document.createElement("div");
+      zero.textContent = "0";
+      zero.className = "cell green";
+      zero.style.gridRow = "1 / span 3";
+      zero.style.gridColumn = "1";
+      table.appendChild(zero);
+      let row = 1;
+      let col = 2;
+      for (let i = 1; i <= 36; i++) {
+        const cell = document.createElement("div");
+        cell.textContent = i;
+      if (redNumbers.includes(i)) {
+        cell.className = "cell red";
+      } else {
+        cell.className = "cell black";
+      }
+      cell.style.gridRow = row;
+      cell.style.gridColumn = col;
+      table.appendChild(cell);
+      row++;
+        if (row > 3) {
+          row = 1;
+          col++;
+        }
+      }
+</script>
   </body>
 </html>
