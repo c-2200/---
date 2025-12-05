@@ -3,40 +3,62 @@
   <head>
     <meta charset="UTF-8">
     <title>ルーレット</title>
-  </head>
-  <body>
-    <h1>ルーレットページ</h1>
     <style>
       body {
-        background: white;
+        background: #ffffff; /* ← 背景を白に変更 */
         font-family: Arial, sans-serif;
       }
       .table {
         display: grid;
-        grid-auto-columns: 90px;
-        grid-auto-rows: 70px;
-        gap: 4px;
+        grid-template-columns: 80px repeat(12, 80px); /* ← 0 ＋ 12列 */
+        grid-auto-rows: 60px;
+        gap: 2px;
         width: max-content;
         margin: 40px auto;
         background: #000;
-        padding: 6px;
+        padding: 4px;
         border-radius: 8px;
       }
       .cell {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 26px;
+        font-size: 22px;
         font-weight: bold;
         color: white;
-        border-radius: 6px;
-        font-family: "Courier New", monospace;
+        border-radius: 4px;
       }
       .green { background: green; }
-      .red { background: red; }
+      .red   { background: red; }
       .black { background: black; }
+      .labelRow div {
+        background: #222;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 20px;
+        border-radius: 6px;
+      }
+      .labelRow {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        width: 600px;
+        margin: 20px auto;
+      }
     </style>
+  </head>
+  <body>
+    <h1>ルーレットページ</h1>
     <div class="table" id="rouletteTable"></div>
+    <div class="labelRow">
+      <div>1st 12</div>
+      <div>2nd 12</div>
+      <div>3rd 12</div>
+      <div>Even</div>
+      <div>Odd</div>
+      <div>Red / Black</div>
+    </div>
     <script>
       const redNumbers = [
         1,3,5,7,9,12,14,16,18,
@@ -50,7 +72,7 @@
       zero.style.gridColumn = "1";
       table.appendChild(zero);
       let row = 1;
-      let col = 2;
+      let col = 2; // 2列目からスタート
       for (let i = 1; i <= 36; i++) {
         const cell = document.createElement("div");
         cell.textContent = i;
@@ -63,10 +85,10 @@
         cell.style.gridColumn = col;
         table.appendChild(cell);
         row++;
-          if (row > 3) {
-            row = 1;
-            col++;
-          }
+        if (row > 3) { // 3行まで行ったら次の列へ
+          row = 1;
+          col++;
+        }
       }
     </script>
   </body>
